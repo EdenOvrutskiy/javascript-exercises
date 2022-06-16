@@ -10,7 +10,13 @@ const sumAll = function (integer, integer2) {
     function isNegative(integer) {
         return (integer < 0);
     }
-
+    if (isNegative(integer)
+        || isNegative(integer2)
+        || (typeof integer != 'number')
+        || (typeof integer2 != 'number')) {
+        return 'ERROR';
+    }
+    /*
     if (isNegative(integer)) {
         return 'ERROR';
     }
@@ -23,11 +29,15 @@ const sumAll = function (integer, integer2) {
     else if (typeof integer2 != 'number') {
         return 'ERROR';
     }
+    */
     else {
         //make sure the iteration happens in
         //the right direction - i.e
         //from the smaller number to the larger
-
+        //let smallerInt;
+        let smallerInt;
+        let biggerInt;
+        
         if (integer < integer2) {
             smallerInt = integer;
             biggerInt = integer2;
@@ -39,7 +49,7 @@ const sumAll = function (integer, integer2) {
 
         //iterate on the sequence of numbers
         let sum = 0;
-        for (i = smallerInt; i <= biggerInt; ++i) {
+        for (let i = smallerInt; i <= biggerInt; ++i) {
             sum += i;
         }
         return sum;
