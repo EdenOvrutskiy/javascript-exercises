@@ -1,5 +1,8 @@
 //TODO
-//enable large numbers - maybe bigInt can help?
+//is a concise if statement with many boolean operators
+//better than multiple if-else ?
+//  should I create a isInvalid(input) function for that block of 
+//  code?
 const sumAll = function (integer, integer2) {
     //return the sum of integer +(integer + 1).. 
     //                           +integer2)
@@ -10,10 +13,15 @@ const sumAll = function (integer, integer2) {
     function isNegative(integer) {
         return (integer < 0);
     }
-    if (isNegative(integer)
-        || isNegative(integer2)
-        || (typeof integer != 'number')
-        || (typeof integer2 != 'number')) {
+    function isInvalidInput(integer, integer2) {
+        if (isNegative(integer)
+            || isNegative(integer2)
+            || (typeof integer != 'number')
+            || (typeof integer2 != 'number')) {
+            return true;
+        }
+    }
+    if (isInvalidInput(integer, integer2)) {
         return 'ERROR';
     }
     /*
@@ -31,29 +39,32 @@ const sumAll = function (integer, integer2) {
     }
     */
     else {
-        //make sure the iteration happens in
-        //the right direction - i.e
-        //from the smaller number to the larger
-        //let smallerInt;
-        let smallerInt;
-        let biggerInt;
-        
-        if (integer < integer2) {
-            smallerInt = integer;
-            biggerInt = integer2;
-        }
-        else {
-            smallerInt = integer2;
-            biggerInt = integer;
-        }
+    //make sure the iteration happens in
+    //the right direction - i.e
+    //from the smaller number to the larger
+    let firstAddend;
+    let lastAddend;
 
-        //iterate on the sequence of numbers
-        let sum = 0;
-        for (let i = smallerInt; i <= biggerInt; ++i) {
-            sum += i;
-        }
-        return sum;
+    if (integer < integer2) {
+        firstAddend = integer;
+        lastAddend = integer2;
     }
+    else if (integer > integer2) {
+        firstAddend = integer2;
+        lastAddend = integer;
+    }
+    else { //if they're equal, it doesn't matter which is first
+        firstAddend = integer2;
+        lastAddend = integer;
+    }
+
+    //add each number to a running total
+    let sum = 0;
+    for (let i = firstAddend; i <= lastAddend; ++i) {
+        sum += i;
+    }
+    return sum;
+}
 };
 
 // Do not edit below this line
