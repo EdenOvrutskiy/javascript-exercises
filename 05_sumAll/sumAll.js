@@ -17,13 +17,16 @@ const sumAll = function (integer, integer2) {
     else if (isNegative(integer2)) {
         return 'ERROR';
     }
+    else if (typeof integer != 'number') {
+        return 'ERROR';
+    }
+    else if (typeof integer2 != 'number') {
+        return 'ERROR';
+    }
     else {
-        //iterate on the sequence of numbers
         //make sure the iteration happens in
         //the right direction - i.e
         //from the smaller number to the larger
-
-        //make one loop with variable "bigger int"
 
         if (integer < integer2) {
             smallerInt = integer;
@@ -34,11 +37,11 @@ const sumAll = function (integer, integer2) {
             biggerInt = integer;
         }
 
+        //iterate on the sequence of numbers
         let sum = 0;
         for (i = smallerInt; i <= biggerInt; ++i) {
             sum += i;
         }
-
         return sum;
     }
 };
