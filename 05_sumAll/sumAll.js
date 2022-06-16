@@ -10,19 +10,21 @@ const sumAll = function (integer, integer2) {
     //specs want to return an 'ERROR' string
     //if encountered.
 
-    function isNegative(integer) {
-        return (integer < 0);
+    function isPositive(integer) {
+        return (integer >= 0);
     }
-    function isInvalidInput(integer, integer2) {
-        if (isNegative(integer)
-            || isNegative(integer2)
-            || (typeof integer != 'number')
-            || (typeof integer2 != 'number')) {
+
+    function isNumber(input) {
+        return (typeof input == 'number');
+    }
+
+    function isValidInput(integer, integer2) {
+        if (isPositive(integer)
+            && isPositive(integer2)
+            && isNumber(integer)
+            && isNumber(integer2)) {
             return true;
         }
-    }
-    if (isInvalidInput(integer, integer2)) {
-        return 'ERROR';
     }
     /*
     if (isNegative(integer)) {
@@ -38,33 +40,36 @@ const sumAll = function (integer, integer2) {
         return 'ERROR';
     }
     */
+    if (isValidInput(integer, integer2)) {
+        //make sure the iteration happens in
+        //the right direction - i.e
+        //from the smaller number to the larger
+        let firstAddend;
+        let lastAddend;
+
+        if (integer < integer2) {
+            firstAddend = integer;
+            lastAddend = integer2;
+        }
+        else if (integer > integer2) {
+            firstAddend = integer2;
+            lastAddend = integer;
+        }
+        else { //if they're equal, it doesn't matter which is first
+            firstAddend = integer2;
+            lastAddend = integer;
+        }
+
+        //add each number to a running total
+        let sum = 0;
+        for (let i = firstAddend; i <= lastAddend; ++i) {
+            sum += i;
+        }
+        return sum;
+    }
     else {
-    //make sure the iteration happens in
-    //the right direction - i.e
-    //from the smaller number to the larger
-    let firstAddend;
-    let lastAddend;
-
-    if (integer < integer2) {
-        firstAddend = integer;
-        lastAddend = integer2;
+        return 'ERROR';
     }
-    else if (integer > integer2) {
-        firstAddend = integer2;
-        lastAddend = integer;
-    }
-    else { //if they're equal, it doesn't matter which is first
-        firstAddend = integer2;
-        lastAddend = integer;
-    }
-
-    //add each number to a running total
-    let sum = 0;
-    for (let i = firstAddend; i <= lastAddend; ++i) {
-        sum += i;
-    }
-    return sum;
-}
 };
 
 // Do not edit below this line
