@@ -1,4 +1,3 @@
-//TODO
 const removeFromArray = function (array, removeThis) {
     //go over every value passed to the function
     for (const argument of arguments) {
@@ -11,20 +10,11 @@ const removeFromArray = function (array, removeThis) {
                 //use the splice method to remove an index from an array
                 const removeCount = 1; //to remove only a single item
                 array.splice(indexToRemove, removeCount);
-                console.log(removeThis, "has been removed from "
-                    + " the array.");
-            }
-            else {
-                console.log("array did not include the specified"
-                    + "value: " + removeThis);
             }
         }
     }
     return array;
 };
-
-//array = [1, 2, 3, 4, 5, 9];
-//console.log(removeFromArray(array, 5, 9, 33, 77));
 
 // Do not edit below this line
 module.exports = removeFromArray;
